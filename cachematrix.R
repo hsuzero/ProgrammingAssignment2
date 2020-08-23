@@ -1,15 +1,33 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This function is able to cache potentially time-consuming computations.
+## 
 
-## Write a short comment describing this function
+## make a cache of input matrix
 
 makeCacheMatrix <- function(x = matrix()) {
-
+    inv <- NULL
+    set <- function(y){
+        x <<- y
+         inv <<- NULL
+     }
+    get <- function() x
+    setinv <- function(inverse) inv <<- inverse
+    getinv <- function() inv
+    list(set = set, get = get,
+         setinv = setinv,
+         getinv = getinv)
 }
 
 
-## Write a short comment describing this function
+## calculate or return cache
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+    inv <- x$getinv()
+    if (!is.null(int)){
+        message("getting cache data")
+        return(inv)
+    }
+    data <- x$get()
+    inv <- inverse(data, ...)
+    x$setinv(inv)
+    inv
 }
